@@ -224,7 +224,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalPush(@NonNull Context context, @Nullable ACI aci, @Nullable String e164, boolean highTrust) {
-    if (UuidUtil.UNKNOWN_UUID.equals(aci)) {
+    if (aci.isUnknown()) {
       throw new AssertionError();
     }
 
