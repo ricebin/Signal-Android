@@ -26,16 +26,12 @@ object EmojiRemote {
       .url(VERSION_URL)
       .build()
 
-    try {
-      okHttpClient.newCall(request).execute().use { response ->
-        if (!response.isSuccessful) {
-          throw IOException()
-        }
-
-        return response.body()?.bytes()?.let { String(it).trim().toIntOrNull() } ?: throw IOException()
+    okHttpClient.newCall(request).execute().use { response ->
+      if (!response.isSuccessful) {
+        throw IOException()
       }
-    } catch (e: IOException) {
-      throw e
+
+      return response.body()?.bytes()?.let { String(it).trim().toIntOrNull() } ?: throw IOException()
     }
   }
 
